@@ -1,4 +1,4 @@
-import { CameraProjections, IfcViewerAPI } from 'web-ifc-viewer';
+import { CameraProjections, IfcViewerAPI } from '../viewer';
 import { createSideMenuButton } from './utils/gui-creator';
 import {
   IFCSPACE, IFCOPENINGELEMENT, IFCFURNISHINGELEMENT, IFCWALL, IFCWINDOW, IFCCURTAINWALL, IFCMEMBER, IFCPLATE
@@ -17,7 +17,7 @@ import Stats from 'stats.js/src/Stats';
 const container = document.getElementById('viewer-container');
 const viewer = new IfcViewerAPI({ container, backgroundColor: new Color(255, 255, 255) });
 viewer.axes.setAxes();
-viewer.grid.setGrid();
+//viewer.grid.setGrid();
 // viewer.shadowDropper.darkness = 1.5;
 
 // Set up stats
@@ -95,6 +95,9 @@ async function getAllWallMeshes() {
  }
 
   viewer.IFC.loader.ifcManager.removeSubset(modelID, undefined, customID);
+
+  
+
   return meshes;
 }
 
@@ -159,6 +162,7 @@ const loadIfc = async (event) => {
   });
 
   model = await viewer.IFC.loadIfc(selectedFile, false);
+  
   // model.material.forEach(mat => mat.side = 2);
 
   if(first) first = false
