@@ -198,11 +198,13 @@ export class IfcClipper extends IfcComponent {
   };
 
   private updateMaterial(mesh: Mesh, planes: Plane[]) {
+    console.log('update materials');
     if (!Array.isArray(mesh.material)) {
       mesh.material.clippingPlanes = planes;
       return;
     }
     mesh.material.forEach((m) => {
+
       m.clippingPlanes = planes;
     });
   }

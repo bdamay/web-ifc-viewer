@@ -147,17 +147,25 @@ export class IfcPlane extends IfcComponent {
   }
 
   private initializeControls(controls: TransformControls) {
+    console.log('initialize controls')
     controls.attach(this.helper);
     controls.showX = false;
     controls.showY = false;
     controls.setSpace('local');
     this.createArrowBoundingBox();
+    window.ctls = controls; //debug controls
+
+    // play with control here
     controls.children[0].children[0].add(this.arrowBoundingBox);
+
   }
 
   private createArrowBoundingBox() {
-    this.arrowBoundingBox.geometry = new CylinderGeometry(0.18, 0.18, 1.2);
-    this.arrowBoundingBox.material = IfcPlane.hiddenMaterial;
+    console.log('in createArrowBoundingBox dont really understand purpose')
+    // this.arrowBoundingBox.geometry = new CylinderGeometry(0.18, 0.18, 1.2);
+    this.arrowBoundingBox.geometry = new CylinderGeometry(0, 0, 0);
+    this.arrowBoundingBox.material = IfcPlane.planeMaterial;
+    // this.arrowBoundingBox.material = IfcPlane.hiddenMaterial;
     this.arrowBoundingBox.rotateX(Math.PI / 2);
     this.arrowBoundingBox.updateMatrix();
     this.arrowBoundingBox.geometry.applyMatrix4(this.arrowBoundingBox.matrix);
